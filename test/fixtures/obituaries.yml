@@ -7,6 +7,10 @@
 one:
   id: 1
   nyt_id: abcd1234
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>
 two:
   id: 2
   nyt_id: efgh5678
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>

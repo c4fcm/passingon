@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130504233707) do
   end
 
   create_table "topics", :force => true do |t|
+    t.string   "name"
     t.text     "obituaries"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

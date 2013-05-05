@@ -1,0 +1,11 @@
+politics:
+  id: 1
+  name: politics
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>
+
+religion:
+  id: 2
+  name: religion
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>
