@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ObituaryTest < ActiveSupport::TestCase
+class TopicTest < ActiveSupport::TestCase
    test "the truth" do
      assert true
    end
