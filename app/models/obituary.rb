@@ -8,7 +8,8 @@ class Obituary < ActiveRecord::Base
       :nytimes_view=>0,
       :does_wikipedia_include=>0,
       :wikipedia_needed=>0,
-      :publications=>[]
+      :publications=>[],
+      :id=>self.nyt_id
     }
     self.obituary_responses.each do |response|
       cs[:read] += 1 if response.read
