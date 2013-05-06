@@ -3,9 +3,11 @@ politics:
   name: politics
   created_at: <%=1.day.ago.to_s(:db)%>
   updated_at: <%=1.day.ago.to_s(:db)%>
+  obituaries: !str '["abcd1234","ijkl9012"]'
 
 religion:
   id: 2
   name: religion
   created_at: <%=1.day.ago.to_s(:db)%>
   updated_at: <%=1.day.ago.to_s(:db)%>
+  obituaries: !str '["abcd1234","efgh5678"]'

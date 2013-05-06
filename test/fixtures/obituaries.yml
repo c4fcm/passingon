@@ -14,3 +14,8 @@ two:
   nyt_id: efgh5678
   created_at: <%=1.day.ago.to_s(:db)%>
   updated_at: <%=1.day.ago.to_s(:db)%>
+three:
+  id: 3
+  nyt_id: ijkl9012
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>
