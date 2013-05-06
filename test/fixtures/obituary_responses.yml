@@ -1,0 +1,32 @@
+one:
+  obituary_id: 1
+  read: true
+  session_id: 1234
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>
+
+two:
+  obituary_id: 1
+  read: true
+  wikipedia_includes: false
+  wikipedia_needed: true
+  does_wikipedia_include: !str '{}'
+  session_id: 5678
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>
+
+three:
+  obituary_id: 1
+  read: true
+  does_publication_include: !str '{}'
+  nytimes_view: true
+  session_id: 9012
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>
+
+four:
+  obituary_id: 2
+  read: true
+  session_id: 3456
+  created_at: <%=1.day.ago.to_s(:db)%>
+  updated_at: <%=1.day.ago.to_s(:db)%>
