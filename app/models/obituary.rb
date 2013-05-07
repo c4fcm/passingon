@@ -22,9 +22,10 @@ class Obituary < ActiveRecord::Base
           pubs.each do |pub|
             if pub.key? "publication"
               if !cs[:publications].has_key? pub["publication"]
-                cs[:publications][pub["publication"]] = [pub]
+                #cs[:publications][pub["publication"]] = [pub]
+                cs[:publications][pub["publication"]] = 0
               else
-                cs[:publications][pub["publication"]] << pub
+                cs[:publications][pub["publication"]] +=1
               end
             end
           end

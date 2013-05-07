@@ -52,8 +52,9 @@ class SurveyController < ApplicationController
     if (params.has_key? "notable" and params["notable"] == "Y") or 
        (params.has_key? "needs_improvement" and params["needs_improvement"] == "Y")
       @obit_response.wikipedia_needed = true 
-      @obit_response.save
     end
+
+    @obit_response.save
 
     respond_to do |format|
       format.html{
