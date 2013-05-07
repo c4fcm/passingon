@@ -5,6 +5,9 @@ class ObituaryController < ApplicationController
     @crowd_status = obituary.get_crowd_status if !obituary.nil?
     @crowd_status[:id] = obituary.nyt_id
     respond_to do |format|
+      format.html{
+        render :layout=> false
+      }
       format.json{
         return :json => @crowd_status
       }

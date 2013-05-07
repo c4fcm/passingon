@@ -6,9 +6,9 @@ class Obituary < ActiveRecord::Base
     cs = {
       :read=>0,
       :nytimes_view=>0,
-      :does_wikipedia_include=>0,
+      :wikipedia_includes=>0,
       :wikipedia_needed=>0,
-      :publications=>[],
+      :publications=>{},
       :id=>self.nyt_id
     }
     self.obituary_responses.each do |response|
@@ -20,7 +20,13 @@ class Obituary < ActiveRecord::Base
         pubs = JSON.parse(response.does_publication_include)
         if !pubs.nil? and pubs.class  == Array and pubs.size > 0
           pubs.each do |pub|
-            cs[:publications] << pub["publication"] if pub.key? "publication"
+            if pub.key? "publication"
+              if !cs[:publications].has_key? pub["publication"]
+                cs[:publications][pub["publication"]] = [pub]
+              else
+                cs[:publications][pub["publication"]] << pub
+              end
+            end
           end
         end
       end
