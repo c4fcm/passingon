@@ -44,7 +44,7 @@ class SurveyController < ApplicationController
   def does_wikipedia_include
     load_obit_response params
 
-    @obit_response.does_wikipedia_include = stripped_params(params)
+    @obit_response.does_wikipedia_include = stripped_params(params).to_json
     if params.has_key? "includes_person" and params["includes_person"] == "Y"
       @obit_response.wikipedia_includes = true 
     end

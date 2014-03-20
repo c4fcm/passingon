@@ -1,13 +1,16 @@
 require 'json'
 require 'pathname'
-require '../config/environment'
 
 readdir = ARGV[0]
+writedir = ARGV[1]
+obitdir = ARGV[2]
 
 
 Dir.glob(File.join(readdir, "*.json")).each do |filename|
   basename = Pathname.new(filename).basename.to_s
   category = basename.to_s.gsub(".json", "")
+
+  puts category
 
   data = JSON.load(File.open(filename).read())
   if(!data.nil? and !data[0].nil? and data[0].has_key?("date"))
@@ -26,33 +29,19 @@ Dir.glob(File.join(readdir, "*.json")).each do |filename|
 
       id = r["url"].gsub(/.*?res=/,"")
 
-      {:name=>name, :date=>r["date"], :id=>id,
+      Dir.mkdir(File.join(obitdir, category)) unless File.exists?(File.join(obitdir, category))
+      if(r["gender"]!="male")
+        File.open(File.join(obitdir, category, id + ".json"), "w") do |f|
+          f.write({:name=>name, :date=>r["date"], :id=>id, :url=>r["url"],
+                  :sentences=>r["sentences"], :g=>r["gender"]}.to_json)
+        end
+      end 
+
+      {:name=>name, :date=>r["date"], :id=>id, 
        :s=>r["sentences"].size, :g=>r["gender"][0]}
     }
-
-    # no need to store male obituaries in this dataset
-    culled_array = new_array.reject{|r|r[:g] =="m"}
-
-    obituaries = culled_array.collect{|r|r[:id]}
-
-    topic = Topic.find_by_name(category)
-    if topic.nil?
-      topic = Topic.create!({:name=>category, :obituaries => obituaries.to_json})
-      puts "created #{category}"
-    else
-      topic.obituaries = obituaries.to_json
-      topic.save
-    end
-
-    #obituaries.each do |obituary|
-    #  if Obituary.find_by_nyt_id(obituary).nil? 
-    #    Obituary.create!({:nyt_id=>obituary})
-    #    print "o"
-    #  else
-    #    print "."
-    #  end
-    #end
-
+    new_array = new_array.reject{|r|r[:g] =="m"}
+    File.open(File.join(writedir, basename), "w"){|f|f.write(new_array.to_json)}
   end
 end
   
